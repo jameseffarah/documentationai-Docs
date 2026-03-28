@@ -1,0 +1,155 @@
+---
+title: Changelog
+description: Track the latest updates, new features, and improvements to Llamaroo to stay informed about platform enhancements.
+---
+
+## Recent Updates
+
+Stay current with Llamaroo's evolution. Review the latest releases below to see new AI-powered course generation tools, performance boosts, and fixes that enhance your gamified learning experience.
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Added AI lesson generator for Pre-K to Grade 5, creating interactive quizzes in under 2 minutes.
+- Introduced class code sharing for seamless student join via `https://dashboard.llamaroo.com/join/{class-code}`.
+
+## Improvements
+
+- Enhanced gamification with 20% faster badge unlocks and new achievement streaks.
+- Optimized dashboard load times by 40% for teachers managing multiple courses.
+
+## Bug Fixes
+
+- Fixed sync issues between teacher edits and student views.
+- Resolved mobile rendering glitches in interactive elements.
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- Rollout of voice-to-text listening exercises with real-time feedback.
+- Bulk import for existing lesson plans via CSV upload.
+
+## Bug Fixes
+
+- Patched authentication token refresh loops during long sessions.
+- Corrected progress tracking for group activities.
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["feature", "breaking"]}>
+
+## Initial Release
+
+- Core gamified course builder with drag-and-drop interactions.
+- Student dashboard with progress gamification and leaderboards.
+- Teacher analytics for engagement insights.
+
+## Breaking Changes
+
+- Updated API endpoints to `https://api.llamaroo.com/v1/`; migrate old integrations.
+
+</Update>
+
+## Upcoming Features
+
+Preview what's next for Llamaroo. These enhancements focus on deeper AI integration and cross-grade adaptability.
+
+<Columns cols={2}>
+
+<Card title="Multi-Language AI" icon="globe" href="/features/ai">
+
+Support for Spanish and French course generation starting next quarter.
+
+</Card>
+
+<Card title="Parent Portal" icon="users" href="/features/parent-portal">
+
+Real-time progress reports shared with parents.
+
+</Card>
+
+<Card title="VR Integrations" icon="vr" href="/features/vr">
+
+Immersive gamified lessons in virtual reality.
+
+</Card>
+
+<Card title="Advanced Analytics" icon="bar-chart-3" href="/features/analytics">
+
+Predictive insights on student performance trends.
+
+</Card>
+
+</Columns>
+
+## Migration Notes
+
+<Callout kind="alert">
+
+Review these steps if upgrading from v0.x. No data loss occurs, but verify your custom themes.
+
+</Callout>
+
+<Steps>
+
+<Step title="Backup Data" icon="database">
+
+Export courses via dashboard: Settings > Export > JSON.
+
+</Step>
+
+<Step title="Update SDK" icon="download">
+
+Install latest:
+
+<CodeGroup tabs="npm,yarn">
+
+````bash
+npm install llamaroo-sdk@latest
+````
+
+````bash
+yarn add llamaroo-sdk@latest
+````
+
+</CodeGroup>
+
+</Step>
+
+<Step title="Regenerate Tokens" icon="key">
+
+Use new endpoint: `POST https://api.llamaroo.com/v1/auth/refresh`.
+
+<ParamField header="Authorization" param-type="string" required="true">
+
+`Bearer YOUR_TOKEN`
+
+</ParamField>
+
+</Step>
+
+<Step title="Test Courses" icon="play-circle">
+
+Preview all classes in staging mode.
+
+</Step>
+
+</Steps>
+
+## Stay Informed
+
+<Expandable title="How to Receive Update Notifications" default-open="true">
+
+Enable email alerts in your account settings. Follow `@llamaroo` on social platforms for previews.
+
+</Expandable>
+
+<Expandable title="Report Issues" default-open="false">
+
+Submit bugs via `https://github.com/llamaroo/issues` with reproduction steps.
+
+</Expandable>

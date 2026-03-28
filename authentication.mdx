@@ -1,0 +1,138 @@
+---
+title: Account Management and Security
+description: Understand how to manage logins, permissions, and secure access for teachers and students on the Llamaroo platform.
+---
+
+## Overview
+
+Llamaroo provides secure account management tailored for teachers and students. You create accounts to access gamified courses, manage classes, and control permissions. Role-based access ensures teachers build and share lessons while students join via class codes. Enable multi-factor authentication (MFA) and adjust privacy settings to protect your data.
+
+<Callout kind="alert">
+  Always use strong, unique passwords and enable MFA to secure your Llamaroo account.
+</Callout>
+
+## Creating and Verifying Accounts
+
+Follow these steps to create an account. Teachers and students use the same process, but roles are assigned during signup.
+
+<Steps>
+  <Step title="Sign Up" icon="user-plus">
+    Visit `https://dashboard.llamaroo.com/signup` and enter your email, password, and role (teacher or student).
+  </Step>
+  <Step title="Verify Email" icon="mail">
+    Check your inbox for a verification email from Llamaroo. Click the link to confirm your account.
+  </Step>
+  <Step title="Set Profile" icon="settings">
+    Complete your profile with name, grade level, and optional avatar.
+  </Step>
+</Steps>
+
+## Role-Based Access Control
+
+Access levels differ by role. Teachers create courses; students consume them.
+
+<Tabs>
+  <Tab title="Teachers" icon="users">
+    Teachers manage classes, build lessons, and generate class codes.
+    
+    <ParamField query="role" param-type="string" required="true">
+      Set to `teacher` during signup.
+    </ParamField>
+    
+    <ParamField header="Authorization" param-type="string" required="true">
+      Bearer token: `Bearer YOUR_TOKEN`.
+    </ParamField>
+  </Tab>
+  <Tab title="Students" icon="book-open">
+    Students join classes and complete interactive lessons.
+    
+    <ParamField query="classCode" param-type="string" required="true">
+      Use the 6-character code from your teacher, e.g., `ABC123`.
+    </ParamField>
+  </Tab>
+</Tabs>
+
+## Password Reset and Multi-Factor Authentication
+
+Forgot your password? Reset it securely.
+
+<Steps>
+  <Step title="Request Reset" icon="key">
+    Go to `https://dashboard.llamaroo.com/login` and click "Forgot Password?". Enter your email.
+  </Step>
+  <Step title="Reset Link" icon="link">
+    Click the emailed link and set a new password (minimum 12 characters).
+  </Step>
+  <Step title="Enable MFA" icon="shield">
+    In settings, activate MFA via authenticator app. Scan the QR code and enter the code.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  MFA adds a second verification layer, blocking 99% of automated attacks.
+</Callout>
+
+## Joining Classes with Codes
+
+Students join via unique class codes shared by teachers.
+
+<CodeGroup tabs="JavaScript,cURL">
+  ```javascript
+  const response = await fetch('https://api.example.com/v1/classes/join', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer YOUR_TOKEN',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      classCode: 'ABC123'
+    })
+  });
+  ```
+  ```bash
+  curl -X POST https://api.example.com/v1/classes/join \
+    -H "Authorization: Bearer YOUR_TOKEN" \
+    -H "Content-Type: application/json" \
+    -d '{"classCode": "ABC123"}'
+  ```
+</CodeGroup>
+
+<Response tabs="200">
+```json
+{
+  "success": true,
+  "class": {
+    "id": "cls_789xyz",
+    "name": "Math Adventures Grade 3",
+    "teacher": "Ms. Smith"
+  }
+}
+```
+</Response>
+
+## Privacy and Sharing Permissions
+
+Control your data visibility.
+
+<Expandable title="Advanced Privacy Settings" default-open="false">
+
+Set permissions in your dashboard under Settings > Privacy.
+
+| Setting | Description | Default |
+|---------|-------------|---------|
+| Profile Visibility | Who sees your avatar and name | Class only |
+| Lesson Progress | Share scores with teacher | Enabled |
+| Data Export | Download your activity logs | Available |
+
+Teachers manage class sharing: generate codes or invite via email.
+
+</Expandable>
+
+<Columns cols={2}>
+  <Card title="Next: Quickstart" icon="rocket" href="/quickstart">
+    Build your first lesson.
+  </Card>
+  <Card title="API Reference" icon="code" href="/api-reference">
+    Integrate Llamaroo programmatically.
+  </Card>
+</Columns>
